@@ -3,9 +3,9 @@ import { useRef, useEffect, useState } from 'react';
 import princeAbout from '@/assets/prince-about.jpg';
 
 const stats = [
-  { value: 7, suffix: '+', label: 'Years Experience' },
-  { value: 50, suffix: '+', label: 'Projects Completed' },
-  { value: 20, suffix: '+', label: 'Brands Served' },
+  { value: 9, suffix: '+', label: 'Years Experience' },
+  { value: 85, suffix: '+', label: 'Projects Completed' },
+  { value: 55, suffix: '+', label: 'Brands Served' },
   { value: 500, suffix: '+', label: 'Students Trained' },
 ];
 
@@ -79,7 +79,7 @@ const AboutSection = () => {
                 viewport={{ once: true }}
                 className="absolute -bottom-6 -right-6 glass-card rounded-2xl p-6"
               >
-                <p className="text-3xl font-bold gradient-text-accent">7+</p>
+                <p className="text-3xl font-bold gradient-text-accent">9+</p>
                 <p className="text-sm text-muted-foreground">Years of<br />Experience</p>
               </motion.div>
             </div>
