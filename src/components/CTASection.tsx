@@ -61,7 +61,7 @@ const CTASection = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button variant="hero" size="xl" asChild>
-              <a href="mailto:hello@sparkmedia.com">
+              <a href="mailto:ellisprince001@gmail.com">
                 Hire Me Now
                 <ArrowRight className="w-5 h-5" />
               </a>
