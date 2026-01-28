@@ -13,6 +13,15 @@ import design7 from '@/assets/portfolio/design-7.jpg';
 import design8 from '@/assets/portfolio/design-8.jpg';
 import design9 from '@/assets/portfolio/design-9.png';
 import design10 from '@/assets/portfolio/design-10.png';
+import design11 from '@/assets/portfolio/design-11.png';
+import design12 from '@/assets/portfolio/design-12.png';
+import design13 from '@/assets/portfolio/design-13.png';
+import design14 from '@/assets/portfolio/design-14.png';
+import design15 from '@/assets/portfolio/design-15.png';
+import design16 from '@/assets/portfolio/design-16.png';
+import design17 from '@/assets/portfolio/design-17.png';
+import design18 from '@/assets/portfolio/design-18.png';
+import design19 from '@/assets/portfolio/design-19.jpg';
 
 const portfolioItems = [
   { id: 1, image: design1, title: 'Pizza Jungle - Restaurant Flyer', category: 'Food & Beverage' },
@@ -25,6 +34,15 @@ const portfolioItems = [
   { id: 8, image: design8, title: 'SKNOW Products - Brand Display', category: 'Product Design' },
   { id: 9, image: design9, title: 'Nigeria Markets - Hiring Post', category: 'Social Media' },
   { id: 10, image: design10, title: 'NUSA Inauguration - Event Poster', category: 'Corporate Events' },
+  { id: 11, image: design11, title: 'NUSA Passport Intervention - Event Flyer', category: 'Corporate Events' },
+  { id: 12, image: design12, title: 'Pleasant Purls - Brand Logo (Pink)', category: 'Logo Design' },
+  { id: 13, image: design13, title: 'Pleasant Purls - Brand Logo (White)', category: 'Logo Design' },
+  { id: 14, image: design14, title: 'ManageX Africa - Logo Design', category: 'Logo Design' },
+  { id: 15, image: design15, title: 'Nelson Mandela Day - NUSA Celebration', category: 'Social Media' },
+  { id: 16, image: design16, title: 'Mandela Day - Community Poster', category: 'Social Media' },
+  { id: 17, image: design17, title: 'Karpra-Ride - Taxi Service Ad', category: 'Marketing' },
+  { id: 18, image: design18, title: 'Karpra-Ride - Brand Logo', category: 'Logo Design' },
+  { id: 19, image: design19, title: 'Drups Logistics - Logo Design', category: 'Logo Design' },
 ];
 
 const PortfolioSection = () => {
