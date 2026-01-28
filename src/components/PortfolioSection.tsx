@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+
 
 // Import portfolio images
 import design1 from '@/assets/portfolio/design-1.png';
@@ -225,43 +225,58 @@ const PortfolioSection = () => {
       </div>
 
       {/* Lightbox Modal */}
-      <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
-        <DialogContent className="max-w-4xl w-[95vw] max-h-[90vh] p-0 overflow-hidden bg-background/95 backdrop-blur-xl border-border/50">
-          <button
+      <AnimatePresence>
+        {selectedItem && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedItem(null)}
-            className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground hover:text-primary transition-colors"
-            aria-label="Close modal"
           >
-            <X className="w-5 h-5" />
-          </button>
-          
-          {selectedItem && (
-            <div className="flex flex-col lg:flex-row h-full">
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            
+            {/* Modal Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative z-10 max-w-3xl w-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedItem(null)}
+                className="absolute -top-12 right-0 w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground hover:text-primary transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
               {/* Image */}
-              <div className="flex-1 flex items-center justify-center p-4 lg:p-6 bg-black/20">
+              <div className="glass-card rounded-2xl overflow-hidden">
                 <img
                   src={selectedItem.image}
                   alt={selectedItem.title}
-                  className="max-w-full max-h-[60vh] lg:max-h-[80vh] object-contain rounded-lg"
+                  className="max-w-full max-h-[70vh] object-contain"
                 />
+                
+                {/* Details Overlay */}
+                <div className="p-4 bg-background/80 backdrop-blur-sm border-t border-border/30">
+                  <span className="text-primary font-semibold text-xs uppercase tracking-wider">
+                    {selectedItem.category}
+                  </span>
+                  <h3 className="font-display text-lg font-bold mt-1 text-foreground">
+                    {selectedItem.title}
+                  </h3>
+                </div>
               </div>
-              
-              {/* Details */}
-              <div className="lg:w-80 p-6 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-border/30">
-                <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-                  {selectedItem.category}
-                </span>
-                <h3 className="font-display text-2xl lg:text-3xl font-bold mt-3 text-foreground">
-                  {selectedItem.title}
-                </h3>
-                <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
-                  Professional graphic design crafted with attention to detail and brand consistency.
-                </p>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
