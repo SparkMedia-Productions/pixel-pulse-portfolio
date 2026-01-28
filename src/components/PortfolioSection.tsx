@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 
 // Import portfolio images
 import design1 from '@/assets/portfolio/design-1.png';
@@ -48,7 +49,7 @@ const portfolioItems = [
 const PortfolioSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-
+  const [selectedItem, setSelectedItem] = useState<typeof portfolioItems[0] | null>(null);
   const slideVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
@@ -147,7 +148,10 @@ const PortfolioSection = () => {
                 }}
                 className="absolute w-full max-w-[400px] md:max-w-[500px] lg:max-w-[600px] cursor-grab active:cursor-grabbing"
               >
-                <div className="glass-card rounded-2xl overflow-hidden group">
+                <div 
+                  className="glass-card rounded-2xl overflow-hidden group cursor-pointer"
+                  onClick={() => setSelectedItem(portfolioItems[currentIndex])}
+                >
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <img
                       src={portfolioItems[currentIndex].image}
@@ -219,6 +223,45 @@ const PortfolioSection = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
+        <DialogContent className="max-w-4xl w-[95vw] max-h-[90vh] p-0 overflow-hidden bg-background/95 backdrop-blur-xl border-border/50">
+          <button
+            onClick={() => setSelectedItem(null)}
+            className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground hover:text-primary transition-colors"
+            aria-label="Close modal"
+          >
+            <X className="w-5 h-5" />
+          </button>
+          
+          {selectedItem && (
+            <div className="flex flex-col lg:flex-row h-full">
+              {/* Image */}
+              <div className="flex-1 flex items-center justify-center p-4 lg:p-6 bg-black/20">
+                <img
+                  src={selectedItem.image}
+                  alt={selectedItem.title}
+                  className="max-w-full max-h-[60vh] lg:max-h-[80vh] object-contain rounded-lg"
+                />
+              </div>
+              
+              {/* Details */}
+              <div className="lg:w-80 p-6 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-border/30">
+                <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+                  {selectedItem.category}
+                </span>
+                <h3 className="font-display text-2xl lg:text-3xl font-bold mt-3 text-foreground">
+                  {selectedItem.title}
+                </h3>
+                <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
+                  Professional graphic design crafted with attention to detail and brand consistency.
+                </p>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
